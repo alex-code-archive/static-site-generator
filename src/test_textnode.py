@@ -9,6 +9,11 @@ class TestTextNode(unittest.TestCase):
         node2 = TextNode("This is a text node", "bold")
         self.assertEqual(node, node2)
 
+    def test_inequality(self):
+        node = TextNode("This is a test", "bold")
+        node2 = TextNode("This  is a test", "bold")
+        self.assertNotEqual(node, node2)
+
 
 if __name__ == "__main__":
     unittest.main()

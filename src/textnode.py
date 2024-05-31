@@ -5,7 +5,11 @@ class TextNode():
         self.url = url
 
     def __eq__(self, text_node):
-        if self.text_type == text_node.text_type:
+        text_equal = self.text == text_node.text
+        text_type_equal = self.text_type == text_node.text_type
+        url_equal = self.url == text_node.url
+
+        if text_equal and text_type_equal and url_equal:
             return True
         return False
 
