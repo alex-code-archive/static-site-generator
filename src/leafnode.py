@@ -8,7 +8,16 @@ class LeafNode(HTMLNode):
         self.props = props
         self.children = []
         super().__init__(self.tag, self.value, self.children, self.props)
-        pass
+
+    def __eq__(self, other_leaf):
+        tag_equal = self.tag == other_leaf.tag
+        value_equal = self.value == other_leaf.value
+        props_equal = self.props == other_leaf.props
+        children_equal = self.children == other_leaf.children
+
+        if tag_equal and value_equal and props_equal and children_equal:
+            return True
+        return False
 
     def to_html(self):
         """Render a leaf node as an HTML string. If leaf node has no `value`, raise 
