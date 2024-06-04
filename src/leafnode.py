@@ -23,5 +23,6 @@ class LeafNode(HTMLNode):
             return f"{self.value}"
         if self.props:
             key = next(iter(self.props))
-            return f"<{self.tag} {key}={self.props[key]}"
-        return f"<{self.tag}>"
+            return f'<{self.tag} {key}="{self.props[key]}">{self.value}</{self.tag}>'
+
+        return f"<{self.tag}>{self.value}</{self.tag}>"
