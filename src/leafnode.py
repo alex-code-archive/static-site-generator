@@ -22,5 +22,6 @@ class LeafNode(HTMLNode):
         if self.tag is None:
             return f"{self.value}"
         if self.props:
-            return f"<{self.tag} {self.props[0]}"
+            key = next(iter(self.props))
+            return f"<{self.tag} {key}={self.props[key]}"
         return f"<{self.tag}>"
