@@ -90,7 +90,5 @@ class ParentNode(HTMLNode):
         if self.children is None:
             raise ValueError("No children detected.")
 
-        html = ""
-
     def __repr__(self):
         return f"ParentNode({self.tag}, {self.value}, children: {self.children}, {self.props})"
