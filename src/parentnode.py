@@ -1,12 +1,12 @@
 from htmlnode import HTMLNode
 
 
-class LeafNode(HTMLNode):
-    def __init__(self, tag, value, props):
+class ParentNode(HTMLNode):
+    def __init__(self, tag, children, props):
         self.tag = tag
-        self.value = value
+        self.value = None 
         self.props = props
-        self.children = []
+        self.children = children
         super().__init__(self.tag, self.value, self.children, self.props)
 
     def __eq__(self, other_leaf):
@@ -26,10 +26,10 @@ class LeafNode(HTMLNode):
         Returns:
         (str): Leaf node as an HTML string
         """
-        if not self.value:
-            raise ValueError("All leaf nodes require a value.")
-        if self.tag is None:
-            return f"{self.value}"
+        if not self.tag:
+            raise ValueError("All leaf nodes require a tag.")
+        if self.children is None:
+            raise ValueError("No children detected.")
         if self.props:
             key = next(iter(self.props))
             return f'<{self.tag} {key}="{self.props[key]}">{self.value}</{self.tag}>'
