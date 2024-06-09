@@ -1,4 +1,4 @@
-from inline_markdown import split_nodes_delimiter
+from inline_markdown import split_nodes_delimiter, extract_markdown_images
 from textnode import TextNode
 from htmlnode import HTMLNode, ParentNode, LeafNode
 
@@ -20,9 +20,11 @@ def main():
     # )
     # print(node)
     # print(node.to_html())
-    node = TextNode("This is text with a `code block``ligma` word", "text")
-    new_node = split_nodes_delimiter([node], "`", "code")
-    print(new_node)
+    # node = TextNode("This is text with a `code block``ligma` word", "text")
+    # new_node = split_nodes_delimiter([node], "`", "code")
+    # print(new_node)
+    text = "This is text with an ![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and ![another](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/dfsdkjfd.png)"
+    print(extract_markdown_images(text))
 
 
 if __name__ == "__main__":
