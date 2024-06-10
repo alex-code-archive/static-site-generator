@@ -49,8 +49,9 @@ def split_nodes_image(old_nodes):
         if not images:
             return old_nodes
         for image in images:
-            print(text_node.text.split(f"![{image[0]}]({image[1]})"))
-        print(images)
+            split = text_node.text.split(f"![{image[0]}]({image[1]})", 1)
+            print(split)
+        # print(images)
 
 
 def split_nodes_link(old_nodes):
