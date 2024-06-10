@@ -40,3 +40,13 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
         new_nodes.extend(temp)
 
         return new_nodes
+
+
+def split_nodes_image(old_nodes):
+    for text_node in old_nodes:
+        images = extract_markdown_images(node.text)
+        print(images)
+
+
+def split_nodes_link(old_nodes):
+    pass
