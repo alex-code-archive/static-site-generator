@@ -1,4 +1,10 @@
-from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links
+from inline_markdown import (
+    split_nodes_delimiter,
+    extract_markdown_images,
+    extract_markdown_links,
+    split_nodes_link,
+    split_nodes_image,
+)
 from textnode import TextNode
 from htmlnode import HTMLNode, ParentNode, LeafNode
 
@@ -29,7 +35,7 @@ def main():
     # print(extract_markdown_links(text))
     node = TextNode(
         "This is text with an ![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and another ![second image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png)",
-        text,
+        "text",
     )
     new_nodes = split_nodes_image([node])
 

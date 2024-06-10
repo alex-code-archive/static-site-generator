@@ -43,8 +43,13 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
 
 
 def split_nodes_image(old_nodes):
+    new_nodes = []
     for text_node in old_nodes:
-        images = extract_markdown_images(node.text)
+        images = extract_markdown_images(text_node.text)
+        if not images:
+            return old_nodes
+        for image in images:
+            print(text_node.text.split(f"![{image[0]}]({image[1]})"))
         print(images)
 
 
