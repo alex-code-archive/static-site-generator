@@ -7,16 +7,23 @@ from textnode import (
 )
 import re
 
+
+def extract_markdown_links(text):
+    matches = re.findall(r"\[(.*?)\]\((.*?)\)", text)
+    return matches
+
+
 def extract_markdown_images(text):
     matches = re.findall(r"!\[(.*?)\]\((.*?)\)", text)
     return matches
+
 
 def split_nodes_delimiter(old_nodes, delimiter, text_type):
     new_nodes = []
     for node in old_nodes:
         temp = []
         if type(node) is TextNode:
-            split = node.text.split(delimiter) 
+            split = node.text.split(delimiter)
             length = len(split)
             for i in range(length):
                 if split[i] == "":
@@ -33,4 +40,3 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
         new_nodes.extend(temp)
 
         return new_nodes
-
