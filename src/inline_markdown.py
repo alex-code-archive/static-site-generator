@@ -5,6 +5,7 @@ from textnode import (
     text_type_italic,
     text_type_code,
     text_type_image,
+    text_type_link,
 )
 import re
 
@@ -61,13 +62,13 @@ def split_nodes_image(old_nodes):
 def split_nodes_link(old_nodes):
     new_nodes = []
     for text_node in old_nodes:
-        images = extract_markdown_images(text_node.text)
-        if not images:
+        links = extract_markdown_links(text_node.text)
+        if not links:
             return old_nodes
         temp = text_node.text
-        for image in images:
-            split_text = temp.split(f"[{image[0]}]({image[1]})", 1)
+        for link in links:
+            split_text = temp.split(f"[{link[0]}]({link[1]})", 1)
             new_nodes.append(TextNode(split_text[0], text_type_text))
-            new_nodes.append(TextNode(image[0], text_type_image, image[1]))
+            new_nodes.append(TextNode(link[0], text_type_link, link[1]))
             temp = split_text[1]
     return new_nodes

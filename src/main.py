@@ -34,10 +34,10 @@ def main():
     # text = "This is text with a [link](https://www.example.com) and [another](https://www.example.com/another)"
     # print(extract_markdown_links(text))
     node = TextNode(
-        "This is text with an [image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and another [second image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png)",
+        "This is text with an [link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and another [second link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png)",
         "text",
     )
-    new_nodes = split_nodes_image([node])
+    new_nodes = split_nodes_link([node])
     print(new_nodes)
 
 
