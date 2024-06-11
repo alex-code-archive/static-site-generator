@@ -33,12 +33,14 @@ def main():
     # print(extract_markdown_images(text))
     # text = "This is text with a [link](https://www.example.com) and [another](https://www.example.com/another)"
     # print(extract_markdown_links(text))
-    node = TextNode(
-        "This is text with an [link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and another [second link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png)",
-        "text",
-    )
-    new_nodes = split_nodes_link([node])
-    print(new_nodes)
+    # node = TextNode(
+    #     "This is text with an [link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and another [second link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png)",
+    #     "text",
+    # )
+    # new_nodes = split_nodes_link([node])
+    # print(new_nodes)
+    textnodes = text_to_textnodes(text)
+    print(textnodes)
 
 
 if __name__ == "__main__":

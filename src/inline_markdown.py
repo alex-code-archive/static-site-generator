@@ -1,11 +1,11 @@
 from textnode import (
     TextNode,
     text_type_text,
-    text_type_bold,
-    text_type_italic,
-    text_type_code,
     text_type_image,
     text_type_link,
+    text_type_code,
+    text_type_italic,
+    text_type_bold,
 )
 import re
 
@@ -72,3 +72,10 @@ def split_nodes_link(old_nodes):
             new_nodes.append(TextNode(link[0], text_type_link, link[1]))
             temp = split_text[1]
     return new_nodes
+
+
+def text_to_textnodes(text):
+    text_nodes = []
+    delimiters = [text_type_bold, text_type_italic, text_type_code]
+    for delimiter in delimiters:
+        split_nodes_delimiter([text], delimiter, text_type_text)
