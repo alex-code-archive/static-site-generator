@@ -41,7 +41,7 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
             new_nodes.append(node)
         new_nodes.extend(temp)
 
-        return new_nodes
+    return new_nodes
 
 
 def split_nodes_image(old_nodes):
@@ -76,6 +76,14 @@ def split_nodes_link(old_nodes):
 
 def text_to_textnodes(text):
     text_nodes = []
-    delimiters = [text_type_bold, text_type_italic, text_type_code]
+    textnode = TextNode(text, text_type_text)
+    delimiters = ["*", "`", "**"]
+
+    split = split_nodes_link([textnode])
+    split = split_nodes_image(split)
+
     for delimiter in delimiters:
-        split_nodes_delimiter([text], delimiter, text_type_text)
+        text_nodes.append(split_nodes_delimiter(
+            split, delimiter, text_type_text))
+    print(split)
+    return text_nodes

@@ -4,9 +4,12 @@ from inline_markdown import (
     extract_markdown_links,
     split_nodes_link,
     split_nodes_image,
+    text_to_textnodes,
 )
 from textnode import TextNode
 from htmlnode import HTMLNode, ParentNode, LeafNode
+
+from pprint import pprint
 
 
 def main():
@@ -39,8 +42,8 @@ def main():
     # )
     # new_nodes = split_nodes_link([node])
     # print(new_nodes)
+    text = "This is **text** with an *italic* word and a `code block` and an ![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and a [link](https://boot.dev)"
     textnodes = text_to_textnodes(text)
-    print(textnodes)
 
 
 if __name__ == "__main__":
