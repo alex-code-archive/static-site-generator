@@ -40,6 +40,19 @@ def main():
     #     "This is text with an [link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and another [second link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png)",
     #     "text",
     # )
+    #
+    # node = TextNode(
+    #     "This is text with an [image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and another ![second image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png)",
+    #     "text",
+    # )
+    # new_nodes = split_nodes_image([node])
+    # print(new_nodes)
+    # node = TextNode(
+    #     "This is text with an [link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and another [second link](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png)",
+    #     "text",
+    # )
+    # new_nodes = split_nodes_link([node])
+    # print(new_nodes)
     # new_nodes = split_nodes_link([node])
     # print(new_nodes)
     text = "This is **text** with an *italic* word and a `code block` and an ![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and a [link](https://boot.dev)"
