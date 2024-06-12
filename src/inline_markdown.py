@@ -56,8 +56,10 @@ def split_nodes_image(old_nodes):
             split_text = temp.split(f"![{image[0]}]({image[1]})", 1)
             new_nodes.append(TextNode(split_text[0], text_type_text))
             new_nodes.append(TextNode(image[0], text_type_image, image[1]))
+            if split_text[1] == "":
+                continue
             new_nodes.append(TextNode(split_text[1], text_type_text))
-            temp = split_text[1]
+            # temp = split_text[1]
     return new_nodes
 
 
@@ -72,20 +74,23 @@ def split_nodes_link(old_nodes):
             split_text = temp.split(f"[{link[0]}]({link[1]})", 1)
             new_nodes.append(TextNode(split_text[0], text_type_text))
             new_nodes.append(TextNode(link[0], text_type_link, link[1]))
+            if split_text[1] == "":
+                continue
             new_nodes.append(TextNode(split_text[1], text_type_text))
-            temp = split_text[1]
+            # temp = split_text[1]
     return new_nodes
 
 
 def text_to_textnodes(text):
     text_nodes = [TextNode(text, text_type_text)]
-    delimiters = {"*": text_type_italic, "`": text_type_code, "**": text_type_bold}
+    delimiters = {"*": text_type_italic,
+                  "`": text_type_code, "**": text_type_bold}
 
     text_nodes = split_nodes_image(text_nodes)
     text_nodes = split_nodes_link(text_nodes)
 
-    # for delimiter, text_type in delimiters.items():
-    #     text_nodes.append(split_nodes_delimiter(
-    #         text_nodes, delimiter, text_type))
-    pprint(text_nodes)
-    return text_nodes
+    for delimiter, text_type in delimiters.items():
+        text_nodes = split_nodes_delimiter(
+            text_nodes, delimiter, text_type)
+        pprint(text_nodes)
+        return text_nodes
