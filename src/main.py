@@ -57,6 +57,7 @@ def main():
     # print(new_nodes)
     text = "This is **text** with an *italic* word and a `code block` and an ![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and a [link](https://boot.dev)"
     textnodes = text_to_textnodes(text)
+    pprint(textnodes)
 
 
 if __name__ == "__main__":
