@@ -5,53 +5,56 @@ from htmlnode import HTMLNode, ParentNode, LeafNode
 
 class TestHTMLNode(unittest.TestCase):
     def test_eq(self):
-        node1 = HTMLNode('a', 'blah', ['children'], {"href": "test.com"})
-        node2 = HTMLNode('a', 'blah', ['children'], {"href": "test.com"})
+        node1 = HTMLNode("a", "blah", ["children"], {"href": "test.com"})
+        node2 = HTMLNode("a", "blah", ["children"], {"href": "test.com"})
         self.assertEqual(node1, node2)
 
     def test_tag_inequality(self):
-        node1 = HTMLNode('aa', 'blah', ['children'], {"href": "test.com"})
-        node2 = HTMLNode('a', 'blah', ['children'], {"href": "test.com"})
+        node1 = HTMLNode("aa", "blah", ["children"], {"href": "test.com"})
+        node2 = HTMLNode("a", "blah", ["children"], {"href": "test.com"})
         self.assertNotEqual(node1, node2)
 
     def test_value_inequality(self):
-        node1 = HTMLNode('a', 'lah', ['children'], {"href": "test.com"})
-        node2 = HTMLNode('a', 'blah', ['children'], {"href": "test.com"})
+        node1 = HTMLNode("a", "lah", ["children"], {"href": "test.com"})
+        node2 = HTMLNode("a", "blah", ["children"], {"href": "test.com"})
         self.assertNotEqual(node1, node2)
 
     def test_children_inequality(self):
-        node1 = HTMLNode('a', 'blah', ['cildren'], {"href": "test.com"})
-        node2 = HTMLNode('a', 'blah', ['children'], {"href": "test.com"})
+        node1 = HTMLNode("a", "blah", ["cildren"], {"href": "test.com"})
+        node2 = HTMLNode("a", "blah", ["children"], {"href": "test.com"})
         self.assertNotEqual(node1, node2)
 
     def test_props_inequality(self):
-        node1 = HTMLNode('a', 'blah', ['children'], {"href": "est.com"})
-        node2 = HTMLNode('a', 'blah', ['children'], {"href": "test.com"})
+        node1 = HTMLNode("a", "blah", ["children"], {"href": "est.com"})
+        node2 = HTMLNode("a", "blah", ["children"], {"href": "test.com"})
         self.assertNotEqual(node1, node2)
 
     def test_props_to_html_equal(self):
-        node1 = HTMLNode('a', 'blah', ['children'], {
-                         "href": "test.com"}).props_to_html()
-        node2 = HTMLNode('a', 'blah', ['children'], {
-                         "href": "test.com"}).props_to_html()
+        node1 = HTMLNode(
+            "a", "blah", ["children"], {"href": "test.com"}
+        ).props_to_html()
+        node2 = HTMLNode(
+            "a", "blah", ["children"], {"href": "test.com"}
+        ).props_to_html()
         return self.assertEqual(node1, node2)
 
     def test_props_to_html_not_equal(self):
-        node1 = HTMLNode('a', 'blah', ['children'], {
+        node1 = HTMLNode("a", "blah", ["children"], {
                          "href": "est.com"}).props_to_html()
-        node2 = HTMLNode('a', 'blah', ['children'], {
-                         "href": "test.com"}).props_to_html()
+        node2 = HTMLNode(
+            "a", "blah", ["children"], {"href": "test.com"}
+        ).props_to_html()
         return self.assertNotEqual(node1, node2)
 
     def test_parent_node_to_html(self):
         node = ParentNode(
-        "p",
-        [
-            LeafNode("b", "Bold text"),
-            LeafNode(None, "Normal text"),
-            LeafNode("i", "italic text"),
-            LeafNode(None, "Normal text"),
-        ],
+            "p",
+            [
+                LeafNode("b", "Bold text"),
+                LeafNode(None, "Normal text"),
+                LeafNode("i", "italic text"),
+                LeafNode(None, "Normal text"),
+            ],
         )
         as_html = "<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>"
         return self.assertEqual(node.to_html(), as_html)
@@ -79,7 +82,8 @@ class TestHTMLNode(unittest.TestCase):
     def test_to_html_with_children(self):
         child_node = LeafNode("span", "child")
         parent_node = ParentNode("div", [child_node])
-        self.assertEqual(parent_node.to_html(), "<div><span>child</span></div>")
+        self.assertEqual(parent_node.to_html(),
+                         "<div><span>child</span></div>")
 
     def test_to_html_with_grandchildren(self):
         grandchild_node = LeafNode("b", "grandchild")
