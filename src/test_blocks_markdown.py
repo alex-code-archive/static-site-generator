@@ -80,6 +80,16 @@ This is the same paragraph on a new line
         block_type = block_to_block_type(md)
         self.assertEqual(block_type, block_type_quote)
 
+    def test_block_type_ordered_list(self):
+        md = "1. This is an ordered list item\n2. This is another ordered list item"
+        block_type = block_to_block_type(md)
+        self.assertEqual(block_type, block_type_ordered_list)
+
+    def test_block_type_ordered_list2(self):
+        md = "1. This is an ordered list item\n2.This is another ordered list item"
+        block_type = block_to_block_type(md)
+        self.assertNotEqual(block_type, block_type_ordered_list)
+
 
 if __name__ == "__main__":
     unittest.main()

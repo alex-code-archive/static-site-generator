@@ -14,7 +14,9 @@ from pprint import pprint
 
 
 def main():
-    block_to_block_type("> This is a code block\n> This is another code block")
+    block_to_block_type(
+        "1. This is an ordered list item\n2. This is another ordered list item"
+    )
 
 
 if __name__ == "__main__":
