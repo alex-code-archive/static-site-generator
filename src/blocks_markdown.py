@@ -33,7 +33,7 @@ def block_to_block_type(markdown):
             if line[1] != " ":
                 block_type = block_type_paragraph
     elif first_char == "1":
-        num = 1
+        num = 2
         block_type = block_type_ordered_list
         for line in split_text[1:]:
             if line[:3] != f"{num}. ":
