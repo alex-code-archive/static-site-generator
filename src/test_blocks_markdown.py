@@ -75,6 +75,11 @@ This is the same paragraph on a new line
         block_type = block_to_block_type(md)
         self.assertNotEqual(block_type, block_type_code)
 
+    def test_block_type_quote(self):
+        md = "> This is a quote\n> So is this"
+        block_type = block_to_block_type(md)
+        self.assertEqual(block_type, block_type_quote)
+
 
 if __name__ == "__main__":
     unittest.main()

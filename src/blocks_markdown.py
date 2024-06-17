@@ -22,7 +22,11 @@ def block_to_block_type(markdown):
         if markdown[-3:] == "```":
             return block_type_code
     elif first_char == ">":
-        pass
+        split = markdown.split("\n")
+        for line in split:
+            if line[0] != ">":
+                return block_type_paragraph
+        return block_type_quote
     elif first_char == "*" or first_char == "-":
         pass
     elif first_char == "1":

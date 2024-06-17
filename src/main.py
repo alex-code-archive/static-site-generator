@@ -14,7 +14,7 @@ from pprint import pprint
 
 
 def main():
-    block_to_block_type("``` Swiggity swooty```")
+    block_to_block_type("> This is a code block\n> This is another code block")
 
 
 if __name__ == "__main__":
