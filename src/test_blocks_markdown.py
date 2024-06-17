@@ -4,6 +4,7 @@ from blocks_markdown import (
     block_to_block_type,
     block_type_paragraph,
     block_type_heading,
+    block_type_code,
     block_type_quote,
     block_type_unordered_list,
     block_type_ordered_list,
@@ -63,6 +64,16 @@ This is the same paragraph on a new line
         md = "######This is not a heading"
         block_type = block_to_block_type(md)
         self.assertNotEqual(block_type, block_type_heading)
+
+    def test_block_type_code(self):
+        md = "```This is a code block```"
+        block_type = block_to_block_type(md)
+        self.assertEqual(block_type, block_type_code)
+
+    def test_block_type_code2(self):
+        md = "```This is not a code block``"
+        block_type = block_to_block_type(md)
+        self.assertNotEqual(block_type, block_type_code)
 
 
 if __name__ == "__main__":

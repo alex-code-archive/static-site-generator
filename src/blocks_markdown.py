@@ -18,8 +18,9 @@ def block_to_block_type(markdown):
                 return block_type_heading
 
         pass
-    elif first__three_chars == "```":
-        pass
+    elif first_three_chars == "```":
+        if markdown[-3:] == "```":
+            return block_type_code
     elif first_char == ">":
         pass
     elif first_char == "*" or first_char == "-":
