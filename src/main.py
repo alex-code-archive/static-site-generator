@@ -6,7 +6,7 @@ from inline_markdown import (
     split_nodes_image,
     text_to_textnodes,
 )
-from blocks_markdown import markdown_to_blocks
+from blocks_markdown import markdown_to_blocks, block_to_block_type
 from textnode import TextNode
 from htmlnode import HTMLNode, ParentNode, LeafNode
 
@@ -14,13 +14,7 @@ from pprint import pprint
 
 
 def main():
-    print( markdown_to_blocks("""This is **bolded** paragraph
-
-    This is another paragraph with *italic* text and `code` here
-    This is the same paragraph on a new line
-
-    * This is a list
-    * with items""" ))
+    block_to_block_type("###### Swiggity swooty")
 
 
 if __name__ == "__main__":
