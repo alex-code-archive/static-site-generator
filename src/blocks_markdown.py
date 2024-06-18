@@ -1,3 +1,5 @@
+from htmlnode import HTMLNode, ParentNode, LeafNode
+
 block_type_paragraph = "paragraph"
 block_type_heading = "heading"
 block_type_code = "code"
@@ -53,19 +55,38 @@ def markdown_to_blocks(markdown):
 
 
 def convert_quote_block_to_html(markdown):
-    pass
-    # for block in blocks:
-    #     print(block)
+    return LeafNode("blockquote", markdown.strip(">"))
+
+
+def convert_unordered_list_to_html(markdown):
+    return
 
 
 def markdown_to_html_node(markdown):
-    block_types = []
     nodes = []
 
     blocks = markdown_to_blocks(markdown)
     for block in blocks:
-        block_types.append(block_to_block_type(block))
-    print(block_types)
+        block_type = block_to_block_type(block)
+        temp = []
+        for line in block.split("\n"):
+            if block_type == block_type_quote:
+                nodes.append(convert_quote_block_to_html(line))
+            elif block_type == block_type_unordered_list:
+                temp.append(LeafNode("li", line.strip("*")))
+                print(line)
+                pass
+            elif block_type == block_type_ordered_list:
+                pass
+            elif block_type == block_type_code:
+                pass
+            elif block_type == block_type_heading:
+                pass
+            elif block_type == block_type_paragraph:
+                pass
+            for line in block.split("\n"):
+                pass
+    print(nodes)
     # TODO: With the block types, loop through the list of blocks and convert to html nodes
     # Will need to split on \n character
     convert_quote_block_to_html(markdown)
