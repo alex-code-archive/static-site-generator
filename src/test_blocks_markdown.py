@@ -90,6 +90,20 @@ This is the same paragraph on a new line
         block_type = block_to_block_type(md)
         self.assertNotEqual(block_type, block_type_ordered_list)
 
+    def test_block_to_block_types(self):
+        block = "# heading"
+        self.assertEqual(block_to_block_type(block), block_type_heading)
+        block = "```\ncode\n```"
+        self.assertEqual(block_to_block_type(block), block_type_code)
+        block = "> quote\n> more quote"
+        self.assertEqual(block_to_block_type(block), block_type_quote)
+        block = "* list\n* items"
+        self.assertEqual(block_to_block_type(block), block_type_unordered_list)
+        block = "1. list\n2. items"
+        self.assertEqual(block_to_block_type(block), block_type_ordered_list)
+        block = "paragraph"
+        self.assertEqual(block_to_block_type(block), block_type_paragraph)
+
 
 if __name__ == "__main__":
     unittest.main()
