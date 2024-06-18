@@ -50,3 +50,22 @@ def markdown_to_blocks(markdown):
         block = block.strip()
         filtered_blocks.append(block)
     return filtered_blocks
+
+
+def convert_quote_block_to_html(markdown):
+    pass
+    # for block in blocks:
+    #     print(block)
+
+
+def markdown_to_html_node(markdown):
+    block_types = []
+    nodes = []
+
+    blocks = markdown_to_blocks(markdown)
+    for block in blocks:
+        block_types.append(block_to_block_type(block))
+    print(block_types)
+    # TODO: With the block types, loop through the list of blocks and convert to html nodes
+    # Will need to split on \n character
+    convert_quote_block_to_html(markdown)
