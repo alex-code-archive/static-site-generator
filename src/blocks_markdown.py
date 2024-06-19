@@ -55,7 +55,10 @@ def markdown_to_blocks(markdown):
 
 
 def convert_quote_block_to_html(block):
-    return map(lambda line: LeafNode("blockquote", line.strip(">")), block.split("\n"))
+    stripped = ""
+    for line in block.split("\n"):
+        stripped += f"{line.strip('> ')} "
+    return [LeafNode("blockquote", stripped)]
 
 
 def convert_unordered_list_to_html(block):
@@ -114,5 +117,6 @@ def markdown_to_html_node(markdown):
             nodes.extend(convert_heading_block_to_html(block))
         elif block_type == block_type_paragraph:
             nodes.extend(convert_paragraph_block_to_html(block))
-    print(nodes)
+    # for node in nodes:
+    #     print(node.to_html())
     return ParentNode("div", nodes)
