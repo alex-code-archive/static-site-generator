@@ -59,7 +59,15 @@ def convert_quote_block_to_html(block):
 
 
 def convert_unordered_list_to_html(block):
-    return map(lambda line: LeafNode("li", line.lstrip("*-")), block.split("\n"))
+    return [
+        ParentNode(
+            "ul",
+            list(
+                map(lambda line: LeafNode(
+                    "li", line.lstrip("*-")), block.split("\n"))
+            ),
+        )
+    ]
 
 
 def convert_ordered_list_to_html(block):
@@ -67,7 +75,7 @@ def convert_ordered_list_to_html(block):
     split = block.split("\n")
     for i in range(len(split)):
         nodes.append(LeafNode("li", split[i].strip(f"{i + 1}. ")))
-    return nodes
+    return [ParentNode("ol", nodes)]
 
 
 def convert_code_block_to_html(block):
