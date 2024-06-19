@@ -93,7 +93,7 @@ def convert_heading_block_to_html(block):
 
 
 def convert_paragraph_block_to_html(block):
-    return
+    return map(lambda line: LeafNode("p", line), block.split("\n"))
 
 
 def markdown_to_html_node(markdown):
@@ -113,6 +113,6 @@ def markdown_to_html_node(markdown):
         elif block_type == block_type_heading:
             nodes.extend(convert_heading_block_to_html(block))
         elif block_type == block_type_paragraph:
-            pass
+            nodes.extend(convert_paragraph_block_to_html(block))
     print(nodes)
     return ParentNode("div", nodes)
