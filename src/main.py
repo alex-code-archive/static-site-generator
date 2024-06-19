@@ -7,7 +7,7 @@ from blocks_markdown import (
 
 def main():
     md = """
->This is a block quote\n>This is another one\n\n* This is an unordered list\n* This is another one\n\n
+>This is a block quote\n>This is another one\n\n* This is an unordered list\n- This is another one\n\n
 1. This is an ordered list\n2. This is another one\n\n```This is a code block```\n\n
 # This is a heading\n###### This is the smallest heading\n\n
 This is a paragraph

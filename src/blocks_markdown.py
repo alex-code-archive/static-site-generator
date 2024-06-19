@@ -54,11 +54,31 @@ def markdown_to_blocks(markdown):
     return filtered_blocks
 
 
-def convert_quote_block_to_html(markdown):
-    return LeafNode("blockquote", markdown.strip(">"))
+def convert_quote_block_to_html(block):
+    return map(lambda line: LeafNode("blockquote", line.strip(">")), block.split("\n"))
 
 
-def convert_unordered_list_to_html(markdown):
+def convert_unordered_list_to_html(block):
+    return map(lambda line: LeafNode("li", line.lstrip("*-")), block.split("\n"))
+
+
+def convert_ordered_list_to_html(block):
+    nodes = []
+    split = block.split("\n")
+    for i in range(len(split)):
+        nodes.append(LeafNode("li", split[i].strip(f"{i + 1}. ")))
+    return nodes
+
+
+def convert_code_block_to_html(block):
+    return
+
+
+def convert_heading_block_to_html(block):
+    return
+
+
+def convert_paragraph_block_to_html(block):
     return
 
 
@@ -68,25 +88,17 @@ def markdown_to_html_node(markdown):
     blocks = markdown_to_blocks(markdown)
     for block in blocks:
         block_type = block_to_block_type(block)
-        temp = []
-        for line in block.split("\n"):
-            if block_type == block_type_quote:
-                nodes.append(convert_quote_block_to_html(line))
-            elif block_type == block_type_unordered_list:
-                temp.append(LeafNode("li", line.strip("*")))
-                print(line)
-                pass
-            elif block_type == block_type_ordered_list:
-                pass
-            elif block_type == block_type_code:
-                pass
-            elif block_type == block_type_heading:
-                pass
-            elif block_type == block_type_paragraph:
-                pass
-            for line in block.split("\n"):
-                pass
+        if block_type == block_type_quote:
+            nodes.extend(convert_quote_block_to_html(block))
+        elif block_type == block_type_unordered_list:
+            nodes.extend(convert_unordered_list_to_html(block))
+        elif block_type == block_type_ordered_list:
+            nodes.extend(convert_ordered_list_to_html(block))
+        elif block_type == block_type_code:
+            pass
+        elif block_type == block_type_heading:
+            pass
+        elif block_type == block_type_paragraph:
+            pass
     print(nodes)
-    # TODO: With the block types, loop through the list of blocks and convert to html nodes
-    # Will need to split on \n character
-    convert_quote_block_to_html(markdown)
+    return ParentNode("div", nodes)
