@@ -79,7 +79,9 @@ def convert_ordered_list_to_html(block):
 
 
 def convert_code_block_to_html(block):
-    return
+    leaf_node = LeafNode("code", block.strip("`"))
+    parent_node = [ParentNode("pre", [leaf_node])]
+    return parent_node
 
 
 def convert_heading_block_to_html(block):
@@ -103,7 +105,7 @@ def markdown_to_html_node(markdown):
         elif block_type == block_type_ordered_list:
             nodes.extend(convert_ordered_list_to_html(block))
         elif block_type == block_type_code:
-            pass
+            nodes.extend(convert_code_block_to_html(block))
         elif block_type == block_type_heading:
             pass
         elif block_type == block_type_paragraph:
