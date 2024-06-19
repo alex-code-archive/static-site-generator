@@ -85,7 +85,11 @@ def convert_code_block_to_html(block):
 
 
 def convert_heading_block_to_html(block):
-    return
+    nodes = map(
+        lambda line: LeafNode(f"h{line.count('#')}", line.strip("# ")),
+        block.split("\n"),
+    )
+    return list(nodes)
 
 
 def convert_paragraph_block_to_html(block):
@@ -107,7 +111,7 @@ def markdown_to_html_node(markdown):
         elif block_type == block_type_code:
             nodes.extend(convert_code_block_to_html(block))
         elif block_type == block_type_heading:
-            pass
+            nodes.extend(convert_heading_block_to_html(block))
         elif block_type == block_type_paragraph:
             pass
     print(nodes)
