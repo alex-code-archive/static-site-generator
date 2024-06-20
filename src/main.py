@@ -1,19 +1,20 @@
-from blocks_markdown import (
-    # markdown_to_blocks,
-    # block_to_block_type,
-    markdown_to_html_node,
-)
+import os
+import shutil
+
+from copystatic import copy_files_recursive
+
+
+dir_path_static = "./static"
+dir_path_public = "./public"
 
 
 def main():
-    md = """
->This is a block quote\n>This is another one\n\n* This is an unordered list\n- This is another one\n\n
-1. This is an ordered list\n2. This is another one\n\n```This is a code block```\n\n
-# This is a heading\n###### This is the smallest heading\n\n
-This is a paragraph
-    """
-    markdown_to_html_node(md)
+    print("Deleting public directory...")
+    if os.path.exists(dir_path_public):
+        shutil.rmtree(dir_path_public)
+
+    print("Copying static files to public directory...")
+    copy_files_recursive(dir_path_static, dir_path_public)
 
 
-if __name__ == "__main__":
-    main()
+main()
