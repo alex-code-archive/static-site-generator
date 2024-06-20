@@ -55,9 +55,16 @@ def markdown_to_blocks(markdown):
 
 
 def convert_quote_block_to_html(block):
+    i = 0
     stripped = ""
-    for line in block.split("\n"):
-        stripped += f"{line.strip('> ')} "
+    split = block.split("\n")
+    length = len(split)
+    for line in split:
+        if i == length - 1:
+            stripped += f"{line.strip('> ')}"
+        else:
+            stripped += f"{line.strip('> ')} "
+        i += 1
     return [LeafNode("blockquote", stripped)]
 
 
@@ -66,8 +73,7 @@ def convert_unordered_list_to_html(block):
         ParentNode(
             "ul",
             list(
-                map(lambda line: LeafNode(
-                    "li", line.lstrip("*-")), block.split("\n"))
+                map(lambda line: LeafNode("li", line.lstrip("**-")), block.split("\n"))
             ),
         )
     ]
