@@ -23,6 +23,14 @@ def generate_page(from_path, template_path, dest_path):
     replaced = temp.replace(" {{ Content }}", html)
 
     destination_path = os.path.dirname(dest_path)
+    file_name = dest_path.split("/")[-1]
     os.makedirs(destination_path, exist_ok=True)
-    with open(f"{destination_path}/index.html", "w") as f:
+    with open(f"{destination_path}/{file_name}", "w") as f:
         f.write(replaced)
+
+
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    dirs = os.listdir(dir_path_content)
+    print(dirs)
+    for dir in dirs:
+        generate_page(f"content/{dir}", template_path, f"{dest_dir_path}/{dir[:-3]}.md")
