@@ -1,3 +1,4 @@
+import os
 from markdown_blocks import markdown_to_html_node
 
 
@@ -15,5 +16,13 @@ def generate_page(from_path, template_path, dest_path):
         md = f.read()
     with open(template_path) as t:
         template = t.read()
-    html_nodes = markdown_to_html_node(md).to_html()
-    print(html_nodes)
+
+    title = extract_title(md)
+    html = markdown_to_html_node(md).to_html()
+    temp = template.replace("{{ Title }}", title)
+    replaced = temp.replace(" {{ Content }}", html)
+
+    destination_path = os.path.dirname(dest_path)
+    os.makedirs(destination_path, exist_ok=True)
+    with open(f"{destination_path}/index.html", "w") as f:
+        f.write(replaced)
